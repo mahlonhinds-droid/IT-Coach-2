@@ -158,3 +158,147 @@
                 feedback.innerHTML = `⚠️ Erreur de syntaxe : Mot-clé '${selectValue || 'MANQUANT'}' non reconnu pour fermer la condition IF. Rappel de cours : IF [Condition] THEN...`;
                 codeDone = false;
                 document.getElementById('log-code').innerText = `[Logs Système] : Erreur de logique de programmation soumise (${selectValue || 'Aucun choix'})`;
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSEC IT Hub - Pro</title>
+    <!-- Tailwind CSS -->
+    <script src="https://tailwindcss.com"></script>
+    <!-- Google Fonts (Geist ou Inter pour un look tech très propre) -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+<body class="bg-[#0b0f19] text-slate-200 min-h-screen pb-12 selection:bg-cyan-500 selection:text-slate-900">
+
+    <!-- TOP NAV -->
+    <nav class="border-b border-slate-800 bg-[#0f172a]/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-3xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-terminal text-sm"></i>
+                </div>
+                <div>
+                    <h1 class="text-sm font-bold tracking-tight text-white">CSEC IT HUB</h1>
+                    <p class="text-[11px] text-slate-400 font-medium tracking-wide uppercase">Interactive Learning</p>
+                </div>
+            </div>
+            
+            <!-- STREAK & XP ACCUEIL (Gamification style Duolingo) -->
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-1.5 text-amber-500 font-semibold text-sm bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20">
+                    <i class="fa-solid fa-fire text-xs"></i> <span>3 Jrs</span>
+                </div>
+                <div id="xp-badge" class="text-cyan-400 font-semibold text-sm bg-cyan-500/10 px-2.5 py-1 rounded-lg border border-cyan-500/20">
+                    0 XP
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENT WRAPPER -->
+    <main class="max-w-2xl mx-auto px-4 mt-8 space-y-6">
+
+        <!-- GLOBAL PROGRESS BAR -->
+        <div class="bg-[#131c31] rounded-2xl p-4 border border-slate-800/80 shadow-xl">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-xs font-semibold text-slate-400 tracking-wide uppercase">Progression du Module</span>
+                <span id="progress-text" class="text-xs font-bold text-cyan-400">0% Complété</span>
+            </div>
+            <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                <div id="progress-bar" class="w-0% bg-gradient-to-r from-cyan-500 to-blue-500 h-full rounded-full transition-all duration-500 ease-out"></div>
+            </div>
+        </div>
+        
+        <!-- MODULE CARD 1: HARDWARE -->
+        <div class="bg-[#131c31] rounded-2xl border border-slate-800/80 shadow-xl overflow-hidden transition-all duration-300 hover:border-slate-700/50">
+            <div class="p-6 border-b border-slate-800/60 flex items-center justify-between bg-[#16223f]/40">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center text-sm border border-blue-500/20">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h2 class="font-bold text-white text-base">01. Architecture du CPU</h2>
+                </div>
+                <span class="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-800 text-slate-400 border border-slate-700/50">CSEC Section 1</span>
+            </div>
+            
+            <div class="p-6 space-y-4">
+                <p class="text-slate-300 text-[14px] leading-relaxed">
+                    Le <span class="text-white font-semibold underline decoration-cyan-500/40">CPU (Central Processing Unit)</span> gère l'exécution de toutes les tâches. À l'intérieur, l'<strong>UAL</strong> effectue les opérations logiques et mathématiques, tandis que l'<strong>Unité de Contrôle (UC)</strong> décode et pilote les instructions comme un chef d'orchestre.
+                </p>
+
+                <!-- INTERACTIVE QUESTION -->
+                <div class="mt-4 pt-4 border-t border-slate-800/50">
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Vérification de lecture</p>
+                    <h3 class="text-sm font-medium text-slate-200 mb-3">Quel composant est chargé de décoder et d'orchestrer les instructions ?</h3>
+                    
+                    <div class="space-y-2">
+                        <button onclick="selectOption(this, false, 'L\'UAL fait les calculs, elle ne pilote pas le flux.', 1)" class="w-full text-left p-3.5 bg-[#17233f] hover:bg-[#1c2d52] border border-slate-800 rounded-xl transition-all duration-200 text-sm flex items-center justify-between group">
+                            <span>A) L'Unité Arithmétique et Logique</span>
+                            <i class="fa-regular fa-circle text-slate-600 group-hover:text-slate-400"></i>
+                        </button>
+                        <button onclick="selectOption(this, true, 'Exact ! C\'est le cerveau décisionnel de l\'architecture.', 1)" class="w-full text-left p-3.5 bg-[#17233f] hover:bg-[#1c2d52] border border-slate-800 rounded-xl transition-all duration-200 text-sm flex items-center justify-between group">
+                            <span>B) L'Unité de Contrôle (UC)</span>
+                            <i class="fa-regular fa-circle text-slate-600 group-hover:text-slate-400"></i>
+                        </button>
+                    </div>
+                    <div id="feedback-1" class="hidden mt-3 p-3 rounded-xl text-xs font-medium border transition-all duration-300"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE CARD 2: PSEUDOCODE LAB -->
+        <div class="bg-[#131c31] rounded-2xl border border-slate-800/80 shadow-xl overflow-hidden transition-all duration-300 hover:border-slate-700/50">
+            <div class="p-6 border-b border-slate-800/60 flex items-center justify-between bg-[#16223f]/40">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-sm border border-emerald-500/20">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h2 class="font-bold text-white text-base">02. Logique de Programmation</h2>
+                </div>
+                <span class="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-800 text-slate-400 border border-slate-700/50">CSEC Section 3</span>
+            </div>
+            
+            <div class="p-6 space-y-4">
+                <p class="text-slate-300 text-[14px]">
+                    Complétez la structure algorithmique officielle du CSEC pour exécuter l'action sous condition.
+                </p>
+
+                <!-- CODE EDITOR DESIGN -->
+                <div class="bg-[#070a13] rounded-xl border border-slate-800 p-4 font-mono text-xs shadow-inner relative overflow-hidden">
+                    <div class="absolute right-3 top-3 text-[10px] text-slate-600 tracking-wider font-bold">PSEUDOCODE</div>
+                    <div class="flex gap-4"><span class="text-slate-600 select-none w-4">1</span><span><span class="text-pink-500">DECLARE</span> score : INTEGER</span></div>
+                    <div class="flex gap-4"><span class="text-slate-600 select-none w-4">2</span><span>score = 72</span></div>
+                    <div class="flex gap-4 items-center py-1"><span class="text-slate-600 select-none w-4">3</span>
+                        <div class="flex items-center gap-2">
+                            <span class="text-pink-500">IF</span> score &gt;= 50 
+                            <select id="code-select" class="bg-[#131c31] text-cyan-400 border border-slate-700 rounded px-2 py-1 focus:outline-none focus:border-cyan-500 font-sans text-xs cursor-pointer">
+                                <option value="">-- Compléter --</option>
+                                <option value="DO">DO</option>
+                                <option value="THEN">THEN</option>
+                                <option value="EXECUTE">EXECUTE</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex gap-4"><span class="text-slate-600 select-none w-4">4</span><span class="text-amber-300 pl-4">PRINT "Grade A"</span></div>
+                    <div class="flex gap-4"><span class="text-slate-600 select-none w-4">5</span><span><span class="text-pink-500">ENDIF</span></span></div>
+                </div>
+
+                <button onclick="runCode()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-semibold text-xs tracking-wide uppercase py-3 rounded-xl transition-all duration-200 shadow-lg shadow-emerald-500/10 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-play text-[10px]"></i> Compiler l'algorithme
+                </button>
+                
+                <div id="code-output" class="hidden mt-3 p-3 rounded-xl text-xs font-mono border"></div>
+            </div>
+        </div>
+
+        <!-- TEACHER LIVE LOGS (STAYS COMPACT & TECH) -->
